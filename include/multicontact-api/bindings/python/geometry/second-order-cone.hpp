@@ -22,7 +22,7 @@ struct SOCPythonVisitor
   typedef typename SOC::Scalar Scalar;
 
   template <class PyClass>
-  void visit(PyClass &cl) const {
+  void visit(PyClass& cl) const {
     cl.def(bp::init<>("Default constructor."))
         .def(bp::init<MatrixD, VectorD>((bp::arg("Q"), bp::arg("direction"))))
         .def("__str__", &toString)
@@ -30,12 +30,12 @@ struct SOCPythonVisitor
              "Returns the lhs value of the conic inequality.")
         .def("rhsValue", &SOC::rhsValue, bp::arg("vector"),
              "Returns the rhs value of the conic inequality.")
-        .def("check", (bool (SOC::*)(const VectorD &) const) & SOC::check,
+        .def("check", (bool (SOC::*)(const VectorD&) const) & SOC::check,
              bp::arg("vector"),
              "Checks if the vector given in argument belongs to the conic "
              "constraint.")
         .def("check",
-             (bool (SOC::*)(const VectorD &, const Scalar) const) & SOC::check,
+             (bool (SOC::*)(const VectorD&, const Scalar) const) & SOC::check,
              bp::args("vector", "factor"),
              "Checks if the vector given in argument belongs to the conic "
              "constraint with a given reduction factor.")
@@ -43,7 +43,7 @@ struct SOCPythonVisitor
                       "Accessor to the direction property.")
         .add_property("Q", &get_Q, &SOC::setQ, "Accessor to the Q property.")
         .def("isApprox",
-             (bool (SOC::*)(const SOC &, const Scalar &) const) & SOC::isApprox,
+             (bool (SOC::*)(const SOC&, const Scalar&) const) & SOC::isApprox,
              bp::args("other", "prec"),
              "Returns true if *this is approximately equal to other, within "
              "the precision determined by prec.")
@@ -56,7 +56,7 @@ struct SOCPythonVisitor
         .staticmethod("RegularCone");
   }
 
-  static void expose(const std::string &class_name) {
+  static void expose(const std::string& class_name) {
     std::string doc = "SOC of dimension " + SOC::dim;
     doc += " defined by its direction and its quadratic norm.";
     bp::class_<SOC>(class_name.c_str(), doc.c_str(), bp::no_init)
@@ -69,14 +69,14 @@ struct SOCPythonVisitor
   }
 
  protected:
-  static std::string toString(const SOC &c) {
+  static std::string toString(const SOC& c) {
     std::ostringstream s;
     s << c;
     return s.str();
   }
 
-  static VectorD get_direction(const SOC &c) { return c.direction(); }
-  static MatrixD get_Q(const SOC &c) { return c.Q(); }
+  static VectorD get_direction(const SOC& c) { return c.direction(); }
+  static MatrixD get_Q(const SOC& c) { return c.Q(); }
 };
 
 }  // namespace python
