@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>multicontact-api</name>
+  <name>multicontact_api</name>
   <version>4.0.0</version>
   <description>
-      tt
+    define, store and use ContactSequence objects
   </description>
   <maintainer email="guilhem.saurel@laas.fr">Guilhem Saurel</maintainer>
   <author>Rohan Budhiraja</author>
