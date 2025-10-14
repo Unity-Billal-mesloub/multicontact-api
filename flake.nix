@@ -1,5 +1,5 @@
 {
-  description = "Trajectory buffer for contact rich robotics applications.";
+  description = "API to define and store Contact phases and Contact Sequences.";
 
   inputs = {
     # Use MaximilienNaveau/nix until https://github.com/Gepetto/nix/pull/121 is merged.
