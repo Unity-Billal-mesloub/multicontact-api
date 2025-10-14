@@ -20,9 +20,15 @@ add_source_group(${PROJECT_NAME}_PYTHON_SOURCES)
 target_link_libraries(${PY_NAME} ${PROJECT_NAME} eigenpy::eigenpy)
 
 set_target_properties(${PY_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${PY_NAME}
-                                            SOVERSION ${PROJECT_VERSION})
+                                            SUFFIX "${PYTHON_EXT_SUFFIX}")
 target_compile_options(${PY_NAME} PRIVATE "-Wno-conversion")
 target_compile_options(${PY_NAME} PRIVATE "-Wno-enum-compare")
+
+if(UNIX)
+  get_relative_rpath(${${PY_NAME}_INSTALL_DIR} ${PY_NAME}_INSTALL_RPATH)
+  set_target_properties(${PY_NAME} PROPERTIES INSTALL_RPATH
+                                              "${${PY_NAME}_INSTALL_RPATH}")
+endif()
 
 install(TARGETS ${PY_NAME} DESTINATION ${${PY_NAME}_INSTALL_DIR})
 
