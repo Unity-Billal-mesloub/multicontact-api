@@ -3,7 +3,7 @@
   <name>multicontact_api</name>
   <version>4.0.0</version>
   <description>
-    define, store and use ContactSequence objects
+    API to define and store Contact phases and Contact Sequences.
   </description>
   <maintainer email="guilhem.saurel@laas.fr">Guilhem Saurel</maintainer>
   <author>Rohan Budhiraja</author>
