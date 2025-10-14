@@ -1,7 +1,7 @@
 # Copyright (c) 2015-2020, CNRS Authors: Justin Carpentier <jcarpent@laas.fr>,
 # Guilhem Saurel
 
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.22.1)
 
 # Project properties
 set(PROJECT_ORG loco-3d)
