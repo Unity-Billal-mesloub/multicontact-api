@@ -27,7 +27,7 @@ struct LCPythonVisitor
   typedef typename LC::Index Index;
 
   template <class PyClass>
-  void visit(PyClass &cl) const {
+  void visit(PyClass& cl) const {
     cl.def(bp::init<>("Default constructor."))
         .def(bp::init<MatrixDx>((bp::arg("rays"), "Init from a set of rays.")))
         .def(bp::init<Index>(bp::args("size"), "Init with a given size."))
@@ -40,7 +40,7 @@ struct LCPythonVisitor
                       "Matrix of rays of the linear cone.")
         .def("__str__", &toString)
         .def("isApprox",
-             (bool (LC::*)(const LC &, const Scalar &) const) & LC::isApprox,
+             (bool (LC::*)(const LC&, const Scalar&) const) & LC::isApprox,
              bp::args("other", "prec"),
              "Returns true if *this is approximately equal to other, within "
              "the precision determined by prec.")
@@ -53,7 +53,7 @@ struct LCPythonVisitor
         .def(bp::self != bp::self);
   }
 
-  static PyClass &expose(const std::string &class_name, std::string doc = "") {
+  static PyClass& expose(const std::string& class_name, std::string doc = "") {
     if (doc.empty()) {
       doc = "Linear Cone of dimension " + LC::dim;
       doc += " defined by its rays.";
@@ -70,14 +70,14 @@ struct LCPythonVisitor
   }
 
  protected:
-  static std::string toString(const LC &c) {
+  static std::string toString(const LC& c) {
     std::ostringstream s;
     s << c;
     return s.str();
   }
 
-  static MatrixDx getRays(const LC &self) { return self.rays(); }
-  static void setRays(LC &self, const MatrixDx &rays) { self.rays() = rays; }
+  static MatrixDx getRays(const LC& self) { return self.rays(); }
+  static void setRays(LC& self, const MatrixDx& rays) { self.rays() = rays; }
 
   static int dim() { return LC::dim; }
 };
@@ -93,7 +93,7 @@ struct ForceConePythonVisitor
   typedef typename ForceCone::WrenchCone WrenchCone;
 
   template <class _PyClass>
-  void visit(_PyClass &cl) const {
+  void visit(_PyClass& cl) const {
     cl.def(bp::init<>("Default constructor."))
         .def(bp::init<Matrix3x>(
             (bp::arg("rays"), "Init from a matrix of rays.")))
@@ -105,14 +105,14 @@ struct ForceConePythonVisitor
         .def("toWrenchCone", &toWrenchCone, "Returns *this as a WrenchCone.")
 
         .def("RegularCone",
-             (ForceCone (*)(const Scalar, const VectorD &,
+             (ForceCone (*)(const Scalar, const VectorD&,
                             const int))&ForceCone::RegularCone,
              bp::args("mu", "direction", "num rays"),
              "Generates a regular linear cone from a given number of rays, a "
              "main direction and a friction "
              "coefficient.")
         .def("RegularCone",
-             (ForceCone (*)(const Scalar, const VectorD &, const int,
+             (ForceCone (*)(const Scalar, const VectorD&, const int,
                             const Scalar))&ForceCone::RegularCone,
              bp::args("mu", "direction", "num rays", "angle offset"),
              "Generates a regular linear cone from a given number of rays, a "
@@ -121,7 +121,7 @@ struct ForceConePythonVisitor
         .staticmethod("RegularCone");
   }
 
-  static void expose(const std::string &class_name) {
+  static void expose(const std::string& class_name) {
     std::string doc = "Force Cone of dimension 3";
     doc += " defined by its rays.";
 
@@ -132,7 +132,7 @@ struct ForceConePythonVisitor
         .def(ForceConePythonVisitor<ForceCone>());
   }
 
-  static WrenchCone toWrenchCone(const ForceCone &self) {
+  static WrenchCone toWrenchCone(const ForceCone& self) {
     return (WrenchCone)(self);
   }
 };
@@ -145,7 +145,7 @@ struct WrenchConePythonVisitor
   typedef typename WrenchCone::Index Index;
 
   template <class _PyClass>
-  void visit(_PyClass &cl) const {
+  void visit(_PyClass& cl) const {
     cl.def(bp::init<>("Default constructor."))
         .def(bp::init<Matrix6x>(
             (bp::arg("rays"), "Init from a matrix of rays.")))
@@ -158,7 +158,7 @@ struct WrenchConePythonVisitor
         .def("angular", &getAngular, "Returns the angular block of *this.");
   }
 
-  static void expose(const std::string &class_name) {
+  static void expose(const std::string& class_name) {
     std::string doc = "Linear Wrench Cone";
 
     LCPythonVisitor<typename WrenchCone::Base>::expose("LinearCone6");
@@ -169,8 +169,8 @@ struct WrenchConePythonVisitor
   }
 
  protected:
-  static Matrix3x getLinear(const WrenchCone &self) { return self.linear(); }
-  static Matrix3x getAngular(const WrenchCone &self) { return self.angular(); }
+  static Matrix3x getLinear(const WrenchCone& self) { return self.linear(); }
+  static Matrix3x getAngular(const WrenchCone& self) { return self.angular(); }
 };
 
 }  // namespace python
