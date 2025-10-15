@@ -2,9 +2,7 @@
   description = "API to define and store Contact phases and Contact Sequences.";
 
   inputs = {
-    # Use MaximilienNaveau/nix until https://github.com/Gepetto/nix/pull/121 is merged.
-    gepetto.url = "github:MaximilienNaveau/nix/topic/mnaveau/add-multicontact-api";
-    # gepetto.url = "github:Gepetto/nix/main";
+    gepetto.url = "github:Gepetto/nix/main";
     flake-parts.follows = "gepetto/flake-parts";
     nixpkgs.follows = "gepetto/nixpkgs";
     nix-ros-overlay.follows = "gepetto/nix-ros-overlay";
