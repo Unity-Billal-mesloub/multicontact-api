@@ -1,27 +1,51 @@
 {
-  description = "Library for creating smooth cubic splines";
+  description = "API to define and store Contact phases and Contact Sequences.";
 
   inputs = {
-    ndcurves.url = "github:loco-3d/ndcurves";
-    flake-parts.follows = "ndcurves/flake-parts";
-    nixpkgs.follows = "ndcurves/nixpkgs";
+    gepetto.url = "github:Gepetto/nix/main";
+    flake-parts.follows = "gepetto/flake-parts";
+    nixpkgs.follows = "gepetto/nixpkgs";
+    nix-ros-overlay.follows = "gepetto/nix-ros-overlay";
+    systems.follows = "gepetto/systems";
+    treefmt-nix.follows = "gepetto/treefmt-nix";
   };
 
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = inputs.nixpkgs.lib.systems.flakeExposed;
+      systems = import inputs.systems;
+      imports = [ inputs.gepetto.flakeModule ];
       perSystem =
-        { pkgs, self', system, ... }:
         {
-          apps.default = {
-            type = "app";
-            program = pkgs.python3.withPackages (_: [ self'.packages.default ]);
+          lib,
+          pkgs,
+          self',
+          ...
+        }:
+        let
+          my-src = lib.fileset.toSource {
+            root = ./.;
+            fileset = lib.fileset.unions [
+              ./bindings
+              ./include
+              ./notebooks
+              ./unittest
+              ./CMakeLists.txt
+              ./package.xml
+            ];
           };
-          devShells.default = pkgs.mkShell { inputsFrom = [ self'.packages.default ]; };
+        in
+        {
           packages = {
-            default = self'.packages.multicontact-api;
-            multicontact-api = pkgs.callPackage ./. { inherit (inputs.ndcurves.packages.${system}) ndcurves; };
+            default = self'.packages.py-multicontact-api;
+            multicontact-api = pkgs.multicontact-api.overrideAttrs {
+              src = my-src;
+              patches = [ ]; # No patch for now
+            };
+            py-multicontact-api = pkgs.python3Packages.multicontact-api.overrideAttrs {
+              src = my-src;
+              patches = [ ]; # No patch for now
+            };
           };
         };
     };
