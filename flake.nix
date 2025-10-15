@@ -40,9 +40,11 @@
             default = self'.packages.py-multicontact-api;
             multicontact-api = pkgs.multicontact-api.overrideAttrs {
               src = my-src;
+              patches = [ ]; # No patch for now
             };
             py-multicontact-api = pkgs.python3Packages.multicontact-api.overrideAttrs {
               src = my-src;
+              patches = [ ]; # No patch for now
             };
           };
         };
