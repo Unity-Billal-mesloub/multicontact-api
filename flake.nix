@@ -36,6 +36,7 @@
               ];
             };
             patches = [ ];
+            postPatch = "";
           };
         in
         {
