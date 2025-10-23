@@ -2,7 +2,7 @@
   description = "API to define and store Contact phases and Contact Sequences.";
 
   inputs = {
-    gepetto.url = "github:Gepetto/nix/main";
+    gepetto.url = "github:gepetto/nix";
     flake-parts.follows = "gepetto/flake-parts";
     nixpkgs.follows = "gepetto/nixpkgs";
     nix-ros-overlay.follows = "gepetto/nix-ros-overlay";
@@ -23,29 +23,26 @@
           ...
         }:
         let
-          my-src = lib.fileset.toSource {
-            root = ./.;
-            fileset = lib.fileset.unions [
-              ./bindings
-              ./include
-              ./notebooks
-              ./unittest
-              ./CMakeLists.txt
-              ./package.xml
-            ];
+          override = {
+            src = lib.fileset.toSource {
+              root = ./.;
+              fileset = lib.fileset.unions [
+                ./bindings
+                ./include
+                ./notebooks
+                ./unittest
+                ./CMakeLists.txt
+                ./package.xml
+              ];
+            };
+            patches = [ ];
           };
         in
         {
           packages = {
             default = self'.packages.py-multicontact-api;
-            multicontact-api = pkgs.multicontact-api.overrideAttrs {
-              src = my-src;
-              patches = [ ]; # No patch for now
-            };
-            py-multicontact-api = pkgs.python3Packages.multicontact-api.overrideAttrs {
-              src = my-src;
-              patches = [ ]; # No patch for now
-            };
+            multicontact-api = pkgs.multicontact-api.overrideAttrs override;
+            py-multicontact-api = pkgs.python3Packages.multicontact-api.overrideAttrs override;
           };
         };
     };
