@@ -64,14 +64,13 @@
       "locked": {
         "lastModified": 1760912477,
         "narHash": "sha256-f13hr5lblgh/1L902D5inme4jrxIUa5CNMoJrJ5CAbY=",
-        "owner": "Gepetto",
+        "owner": "gepetto",
         "repo": "nix",
         "rev": "5b37aa4185cd3797bd024b88b3a4b6c78a50a032",
         "type": "github"
       },
       "original": {
-        "owner": "Gepetto",
-        "ref": "main",
+        "owner": "gepetto",
         "repo": "nix",
         "type": "github"
       }
