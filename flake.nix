@@ -12,18 +12,16 @@
 
   outputs =
     inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = import inputs.systems;
-      imports = [ inputs.gepetto.flakeModule ];
-      perSystem =
-        {
-          lib,
-          pkgs,
-          self',
-          ...
-        }:
-        let
-          override = {
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } (
+      { lib, self, ... }:
+      {
+        systems = import inputs.systems;
+        imports = [
+          inputs.gepetto.flakeModule
+          { gepetto-pkgs.overlays = [ self.overlays.default ]; }
+        ];
+        flake.overlays.default = _final: prev: {
+          multicontact-api = prev.multicontact-api.overrideAttrs {
             src = lib.fileset.toSource {
               root = ./.;
               fileset = lib.fileset.unions [
@@ -35,16 +33,16 @@
                 ./package.xml
               ];
             };
-            patches = [ ];
-            postPatch = "";
-          };
-        in
-        {
-          packages = {
-            default = self'.packages.py-multicontact-api;
-            multicontact-api = pkgs.multicontact-api.overrideAttrs override;
-            py-multicontact-api = pkgs.python3Packages.multicontact-api.overrideAttrs override;
           };
         };
-    };
+        perSystem =
+          { pkgs, self', ... }:
+          {
+            packages = {
+              default = self'.packages.multicontact-api;
+              multicontact-api = pkgs.python3Packages.multicontact-api.override { standalone = false; };
+            };
+          };
+      }
+    );
 }
