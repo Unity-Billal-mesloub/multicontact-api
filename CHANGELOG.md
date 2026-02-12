@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.1.1] - 2026-02-12
+
 - Add CHANGELOG.md
 
 ## [4.1.0] - 2025-10-23
@@ -121,7 +123,8 @@ Changes since v1.0.0:
 
 - Initial release
 
-[Unreleased]: https://github.com/loco-3d/multicontact-api/compare/v4.1.0...HEAD
+[Unreleased]: https://github.com/loco-3d/multicontact-api/compare/v4.1.1...HEAD
+[4.1.1]: https://github.com/loco-3d/multicontact-api/compare/v4.1.0...v4.1.1
 [4.1.0]: https://github.com/loco-3d/multicontact-api/compare/v4.0.0...v4.1.0
 [4.0.0]: https://github.com/loco-3d/multicontact-api/compare/v3.0.3...v4.0.0
 [3.0.3]: https://github.com/loco-3d/multicontact-api/compare/v3.0.2...v3.0.3
