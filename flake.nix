@@ -40,7 +40,7 @@
           {
             packages = {
               default = self'.packages.multicontact-api;
-              multicontact-api = pkgs.python3Packages.multicontact-api.override { standalone = false; };
+              multicontact-api = pkgs.python3Packages.multicontact-api.override { buildStandalone = false; };
             };
           };
       }
