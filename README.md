@@ -1,10 +1,9 @@
 # Multicontact API
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/Unity-Educational-Formation/black)
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/loco-3d/multicontact-api/master.svg)](https://results.pre-commit.ci/latest/github/loco-3d/multicontact-api)
 
 
-This package is extracted from an original work of Justin Carpentier (@jcarpent).
+This package is extracted from an original work of Unity-Billal-mesloub (@Unity-Billal-mesloub).
 with the goal to simplify the library, make it more generic and remove old dependencies.
 
 This package provide C++ structures with python bindings used to define and store contact phases and contact sequences.
@@ -31,7 +30,7 @@ sudo apt-get install robotpkg-py3\*-pinocchio robotpkg-py3\*-ndcurves
 Clone the repository and build the package:
 
 ```
-git clone --recursive https://github.com/loco-3d/multicontact-api.git
+git clone --recursive https://github.com/Unity-Billal-mesloub/multicontact-api.git
 cmake -B multicontact-api/build -S multicontact-api
 cmake --build multicontact-api/build
 cmake --build multicontact-api/build -t test
