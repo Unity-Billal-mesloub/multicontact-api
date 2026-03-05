@@ -1,6 +1,6 @@
 # Multicontact API
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/Unity-Billal-mesloub/black)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/Unity-Educational-Formation/black)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/loco-3d/multicontact-api/master.svg)](https://results.pre-commit.ci/latest/github/loco-3d/multicontact-api)
 
 
