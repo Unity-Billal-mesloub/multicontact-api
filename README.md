@@ -1,8 +1,6 @@
 # Multicontact API
 
-[![Pipeline status](https://gitlab.laas.fr/loco-3d/multicontact-api/badges/master/pipeline.svg)](https://gitlab.laas.fr/loco-3d/multicontact-api/commits/master)
-[![Coverage report](https://gitlab.laas.fr/loco-3d/multicontact-api/badges/master/coverage.svg?job=doc-coverage)](https://gepettoweb.laas.fr/doc/loco-3d/multicontact-api/master/coverage/)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/Unity-Billal-mesloub/black)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/loco-3d/multicontact-api/master.svg)](https://results.pre-commit.ci/latest/github/loco-3d/multicontact-api)
 
 
@@ -14,9 +12,9 @@ This package provide C++ structures with python bindings used to define and stor
 # Dependencies
 
 * Eigen
-* [Eigenpy](https://github.com/stack-of-tasks/eigenpy) (Only for python bindings)
-* [Pinocchio](https://github.com/stack-of-tasks/pinocchio)
-* [NDCurves](https://github.com/loco-3d/ndcurves)
+* [Eigenpy](https://github.com/Unity-Billal-mesloub/eigenpy) (Only for python bindings)
+* [Pinocchio](https://github.com/Unity-Billal-mesloub/pinocchio)
+
 
 # Installation procedure
 
@@ -106,7 +104,7 @@ Optionnaly, a Contact Phase can store data related to the centroidal dynamic. It
   point3_t m_dL_final;
 ```
 
-It also store centroidal trajectories, represented with objects from the [NDCurves](https://github.com/loco-3d/ndcurves) library:
+It also store centroidal trajectories, represented with objects.
 
 
 ```c
